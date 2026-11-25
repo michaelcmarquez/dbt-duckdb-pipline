@@ -1,0 +1,8 @@
+
+sources:
+  - name: raw
+    tables:
+      - name: job_postings
+        description: One row per job-posting scraped from the web
+        config:
+          external_location: '../data/raw/raw_job_postings_*.parquet'
