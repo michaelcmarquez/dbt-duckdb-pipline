@@ -1,7 +1,7 @@
 # Automated Job Postings Pipeline (v1) - dbt + DuckDB
 
-[![dbt build & publish](https://github.com/mmarquez225/dbt-duckdb-pipline/actions/workflows/dbt_build.yml/badge.svg)](https://github.com/mmarquez225/dbt-duckdb-pipline/actions/workflows/dbt_build.yml)
-[![dbt Docs](https://img.shields.io/badge/dbt_docs-live-blue)](https://mmarquez225.github.io/dbt-duckdb-pipline/)
+[![dbt build & publish](https://github.com/michaelcmarquez/dbt-duckdb-pipline/actions/workflows/dbt_build.yml/badge.svg)](https://github.com/michaelcmarquez/dbt-duckdb-pipline/actions/workflows/dbt_build.yml)
+[![dbt Docs](https://img.shields.io/badge/dbt_docs-live-blue)](https://michaelcmarquez.github.io/dbt-duckdb-pipline/)
 
 ![dbt pipeline diagram](img/dbt_pipeline.png)
 
@@ -17,8 +17,8 @@ A public dbt + DuckDB pipeline over ~692k real job postings, rebuilt and republi
 | --- | --- | --- |
 | **dbt pipeline** | sources → cleaned model → insight marts | [`analytics/models/`](analytics/models/) |
 | **Data tests** | `unique` / `not_null` on key columns | [`schema.yml`](analytics/models/schema.yml) |
-| **Hosted dbt docs** | lineage, descriptions, column tests | [Live docs site](https://mmarquez225.github.io/dbt-duckdb-pipline/) |
-| **Public CI** | build + test + publish on every push | [Actions workflow](https://github.com/mmarquez225/dbt-duckdb-pipline/actions/workflows/dbt_build.yml) |
+| **Hosted dbt docs** | lineage, descriptions, column tests | [Live docs site](https://michaelcmarquez.github.io/dbt-duckdb-pipline/) |
+| **Public CI** | build + test + publish on every push | [Actions workflow](https://github.com/michaelcmarquez/dbt-duckdb-pipline/actions/workflows/dbt_build.yml) |
 | **Environments** | local `dev` target vs CI `prod` target | [`ci/profiles.yml`](ci/profiles.yml) |
 | **Published warehouse** | one `ATTACH`, queryable by anyone | [Query it](#-query-the-published-warehouse) |
 
@@ -59,7 +59,7 @@ On each run, Actions:
 1. Installs deps with `uv`
 2. Downloads raw parquet
 3. Runs `dbt build` with the committed CI profile (prod)
-4. Publishes `prod.duckdb` as an asset on the [`warehouse` release](https://github.com/mmarquez225/dbt-duckdb-pipline/releases/tag/warehouse)
+4. Publishes `prod.duckdb` as an asset on the [`warehouse` release](https://github.com/michaelcmarquez/dbt-duckdb-pipline/releases/tag/warehouse)
 
 The badge at the top of this README links to the latest runs.
 
@@ -73,7 +73,7 @@ No clone required. [Install DuckDB](https://duckdb.org/docs/installation/) (`bre
 INSTALL httpfs;
 LOAD httpfs;
 
-ATTACH 'https://github.com/mmarquez225/dbt-duckdb-pipline/releases/download/warehouse/prod.duckdb' AS jobs (READ_ONLY);
+ATTACH 'https://github.com/michaelcmarquez/dbt-duckdb-pipline/releases/download/warehouse/prod.duckdb' AS jobs (READ_ONLY);
 USE jobs;
 SHOW TABLES;
 
@@ -81,7 +81,7 @@ SELECT * FROM top_locations;
 SELECT * FROM monthly_summary;
 ```
 
-> `ATTACH` reads the database straight from the [`warehouse` release](https://github.com/mmarquez225/dbt-duckdb-pipline/releases/tag/warehouse), read-only. You can also download `prod.duckdb` from there and open it locally with `duckdb prod.duckdb`.
+> `ATTACH` reads the database straight from the [`warehouse` release](https://github.com/michaelcmarquez/dbt-duckdb-pipline/releases/tag/warehouse), read-only. You can also download `prod.duckdb` from there and open it locally with `duckdb prod.duckdb`.
 
 ---
 
@@ -89,7 +89,7 @@ SELECT * FROM monthly_summary;
 
 Docs are generated with `dbt docs generate`, committed to [`docs/`](docs/), and served by GitHub Pages:
 
-**→ [mmarquez225.github.io/dbt-duckdb-pipline](https://mmarquez225.github.io/dbt-duckdb-pipline/)**
+**→ [michaelcmarquez.github.io/dbt-duckdb-pipline](https://michaelcmarquez.github.io/dbt-duckdb-pipline/)**
 
 The site shows:
 
